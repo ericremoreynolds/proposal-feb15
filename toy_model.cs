@@ -23,7 +23,7 @@ namespace CSharp
                 s1[0] = 6.0 + 0.5 * rng.NextDouble();
                 s1[1] = -2.0 + 3.0 * rng.NextDouble();
 
-                double p = minus_prob(s1);
+                double p = -minus_prob(s1);
                 psum += p;
                 for(int i=0; i<n_exps; i++)
                 {

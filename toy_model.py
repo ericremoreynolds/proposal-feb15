@@ -87,7 +87,7 @@ plt.savefig("out/toy-model-max-lik.pdf")
 
 # generate mc
 log.info("Monte carlo importance sampling")
-N = 100000
+N = 1000
 psum = 0.0
 s1 = np.zeros((2,), dtype="f")
 # m = np.zeros((30, 30))
@@ -116,7 +116,11 @@ plt.clf()
 plt.axis([0, 4, 1.5, 6.0])
 plt.xlabel("Expiry")
 plt.ylabel("Price")
-plt.imshow(m, extent=(0.0, 4.0, 1.5, 6.0), interpolation='bicubic', origin='lower', cmap=cm.Blues)
+mnp = np.zeros((m.GetLength(0), m.GetLength(1)), dtype='f')
+for i in range(m.GetLength(0)):
+    for j in range(m.GetLength(1)):
+        mnp[i, j] = m[i, j]
+plt.imshow(mnp, extent=(0.0, 4.0, 1.5, 6.0), interpolation='bicubic', origin='lower', cmap=cm.Blues)
 handle_bid, = plt.plot(expiries, bids, "ro", label="Bid")
 handle_ask, = plt.plot(expiries, asks, "go", label="Ask")
 handle_mid, = plt.plot(expiries, fvs, "bo", label="MLFV")
